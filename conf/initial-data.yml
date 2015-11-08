@@ -1,0 +1,7 @@
+users: 
+- !!models.User
+        email: admin@fmu.br
+        name: usuario adminitrador
+        password: $2a$10$s0fMS1nGtEUglfeqzOcvxuwFqS98EZA2eTT682LenexYRnZZJHVpC
+
+

@@ -1,0 +1,23 @@
+@(message: String, nome: List[Noticias])
+
+@main("AirBank Noticias") {
+    
+    						 <fildset>
+                             <legend> Noticias Recentes </legend>
+                             </fildset> 
+                             @for(Noticias <- nome){
+                             <a href="@routes.Application.principalNoticia(Noticias.id)">@Noticias.nomeNoticias</a><br>
+                             }
+                             <fildset>
+                             <legend></legend>
+                             </fildset>
+                            
+                            
+                            @if(session.contains("connected") && session.contains("professor")) {
+                             <a href="@routes.Application.adicionarNoticias">Cadastrar Noticia</a>
+			}else{}
+			
+	
+			 
+    
+}

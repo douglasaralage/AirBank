@@ -1,0 +1,11 @@
+@(requestPath: String)
+@import helper._
+@import helper.twitterBootstrap._
+@main("404: Not found") {
+  <h2>404: Não encontrado</h2>
+  <p>Infelizmente, não posso processar seu pedido [@requestPath]</p>
+  
+  <a href="@routes.Application.index()"><span class="btn btn-success"> Voltar para a página inicial </span></a>
+  
+  
+}

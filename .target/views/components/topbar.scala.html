@@ -1,0 +1,27 @@
+	<!-- BARRA TOPO -->
+	
+	
+	
+	<div class="navbar">
+		<div class="navbar-inner"> 
+			<a class="brand" href="@routes.Application.index()">FMU</a>
+			<!-- SPAN PARA LOGIN -->
+			 <span class="navbar-text pull-right"> 
+				@if(session.contains("connected")) {
+			 		Bem vindo @session.get("connected") <a href="@routes.Application.logout"> <span class="label lbl-info"> Sair</span> </a>
+				 }else {
+			  		<a  href="@routes.Application.login"> <span class="label lbl-info">Login <span>  </a> 
+			 	}
+
+			 </span>
+			 <!-- FIM SPAN PARA LOGIN -->
+		<ul class="nav">
+			 <li class="divider-vertical"></li>
+			 <li><a class="brand" href="@routes.Application.sobre()"> Air Bank Time Corporation</a> </li>
+			
+		</ul>
+	</div>
+	</div>
+	</p>
+	
+			 <!-- FIM BARRA TOPO -->

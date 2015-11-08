@@ -1,0 +1,57 @@
+@(message: String)
+
+
+@main("AirBank") {
+   
+   
+   <div style ="position:absolute;left:25%;display:block">
+                                <h2> Eventos e Noticias Recentes!</h2>
+ <script>
+ // Carousel Auto-Cycle
+  $(document).ready(function() {
+    $('.carousel').carousel({
+      interval: 3000
+    });
+  });
+</script>  
+      <!-- Carousel
+    ================================================== -->
+    <div id="myCarousel" class="carousel slide">
+      <div class="carousel-inner">
+        <div class="item active">
+          <img src="@routes.Assets.at("images/Carousel1.jpg")" alt="">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1></h1>
+              <p class="lead"></p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img src="@routes.Assets.at("images/carousel2.jpg")" alt="">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1></h1>
+              <p class="lead"></p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img src="@routes.Assets.at("images/carousel3.jpg")" alt="">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1></h1>
+              <p class="lead"></p>
+              <p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
+    </div><!-- /.carousel -->
+      
+                    
+  </div>
+    
+}

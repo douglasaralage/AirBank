@@ -1,0 +1,20 @@
+@(message: String, nome: List[Event])
+@main("AirBank Noticias") {
+    
+    
+ 					   <!-- Parte para lista de Eventos Recentes -->
+                             <fildset>
+                             <legend> Eventos Recentes </legend>
+                             </fildset> 
+                             @for(Event <- nome){
+                             <a href="@routes.Application.principalEvento(Event.id)">@Event.nomeEvento</a><br>
+                         		}
+                       <!-- Parte para link de cadastro de Eventos -->
+     						 <fildset>
+     						 <legend></legend>
+                             </fildset>
+                             
+                             @if(session.contains("connected") && session.contains("professor")) {
+                             <a href="@routes.Application.adicionarEvento()">Cadastrar Evento</a>
+			}else{}
+}

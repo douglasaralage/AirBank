@@ -1,0 +1,29 @@
+@(noticiasForm : Form[Noticias])
+@import helper._
+@main("AirBank Noticias") {
+    
+    
+  
+                              <fildset>
+                             <legend> Cadastrar Noticias </legend>
+                             </fildset> 
+                             
+                              <form action="@routes.Application.addNoticia()" method="POST">
+                         	 
+                                                   
+                           			@inputText(noticiasForm("nomeNoticias"),'_label -> "Nome do Noticia:")
+						 			@inputText(noticiasForm("sobreNoticias"),'_label -> "Sobre o Noticia:")
+						 			@inputText(noticiasForm("dataNoticias"),'_label -> "Data do Noticia:")
+						 			Foto: <input type ="file" name ="picture"></input>
+						 			<fildset>
+                             			<legend></legend>
+                             		</fildset>
+                            <input type="submit" class="btn btn-success" value="Cadastrar">
+						 	<input type="reset" class="btn" value="Limpar">
+						 </form>
+                            
+                
+	
+			 
+    
+}

@@ -1,0 +1,36 @@
+@(formCadastro : Form[User])
+@import helper._
+@main("Cadastro") {
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <div>
+   									@if(flash.containsKey("Erro")) {
+						 			<div class="alert allert-error">
+						 			<a class="clouse" data-dismiss="alert"></a>
+						 			@flash.get("Erro")
+						 			</div>
+						 			}
+                     
+                         <form action="@routes.Application.addUser()" method="POST">
+                         	 <fildset>
+                             <legend> Cadastro de Usuario </legend>
+                             </fildset>   
+                                                   
+                           			@inputText(formCadastro("name"),'_label -> "Nome de Usuario:")
+						 			@inputText(formCadastro("email"),'_label -> "Email do Usuario:")
+						 			@inputPassword(formCadastro("password"),'_label -> "Senha do Usuario:")
+						 			@inputText(formCadastro("quantidadehoras"),'_label -> "Quantidade de Horas Requerida pela faculdade:")
+						 			
+						 			<select name="tipo">
+						 			<option value="">Selecione o Tipo</option>
+						 			<option value="Professor">Professor</option>
+						 			<option value="Aluno">Aluno</option>
+						 			</select>
+						 			<fildset>
+                             			<legend></legend>
+                             		</fildset>
+                            <input type="submit" class="btn btn-success" value="Cadastrar">
+						 	<input type="reset" class="btn" value="Limpar">
+						 </form>
+                         </div>    
+}

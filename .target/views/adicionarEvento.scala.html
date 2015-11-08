@@ -1,0 +1,30 @@
+@(formEvent : Form[Event])
+@import helper._
+@main("AirBank Evento") {
+    
+    
+  
+                              
+                              <form action="@routes.Application.addEvento()" method="POST">
+                         	 <fildset>
+                             <legend> Cadastrar Evento </legend>
+                             </fildset>   
+                                    
+                                                                                     
+                           			@inputText(formEvent("nomeEvento"),'_label -> "Nome do Evento:")
+						 			@inputText(formEvent("sobreEvento"),'_label -> "Sobre o Evento:")
+						 			@inputText(formEvent("localEvento"),'_label -> "Endereco do Evento:")
+						 			@inputText(formEvent("horasEventos"),'_label -> "Horario do Evento:")
+						 			@inputText(formEvent("dataEvento"),'_label -> "Data do Evento:")
+						 			Foto: <input type ="file" name ="picture"></input>
+						 			<fildset>
+                             			<legend></legend>
+                             		</fildset>	
+                            <input type="submit" class="btn btn-success" value="Cadastrar">
+						 	<input type="reset" class="btn" value="Limpar">
+						 </form>
+                            
+                      
+			 
+    
+}

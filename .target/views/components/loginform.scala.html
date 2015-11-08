@@ -1,0 +1,33 @@
+@(formLogin: Form[Application.Login])
+
+        
+        @helper.form(routes.Application.authenticate) {
+            
+            <h1>Login</h1>
+            
+            @if(formLogin.hasGlobalErrors) { 
+                <p class="error">
+                    @formLogin.globalError.message
+                </p>
+            }
+            
+            @if(flash.contains("success")) {
+                <p class="success">
+                    @flash.get("success")
+                </p>
+            }
+            
+            <p>
+                <input type="email" name="email" placeholder="Email" value="@formLogin("email").value">
+            </p>
+            <p>
+                <input type="password" name="password" placeholder="Password">
+            </p>
+            <p>
+               	<input type="submit" value="Login" class="btn btn-success">
+   
+            </p>
+            
+        }
+
+    

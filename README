@@ -1,0 +1,17 @@
+APLICACAO TEMPLATE - PLAY 2.1.1
+=====================================
+
+Template criado por André F. M. Batista para o Framework PLAY 2.1.1
+
+O que o template possui:
+
+- View main.scala.html configurada para Layout "UFABC"
+- Twitter bootstrap configurado
+- Sistema de Login de Usuario (controller Admin, classe BCRYPT, etc)
+- Rotas configuradas para login, logout
+- Carregamento inicial de dados de usuario pela classe app/Globals.java
+- Tratamento de requisicoes invalidas pela classe app/Globals.java
+- Banco de dados configurado por padrao para H2 MEM
+- Ebeans habilitados em app.models.*
+
+

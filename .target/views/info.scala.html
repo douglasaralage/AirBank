@@ -10,11 +10,13 @@
     <form action="@routes.Application.upinfo(usuario.id)" method="POST" id="form">
     <script>
     	function show() {
+    		document.getElementById("btn_salvar").style.visibility = "";
     		document.getElementById("senha_anterior").style.visibility = "";
     		document.getElementById("nova_senha").style.visibility = "";
     		document.getElementById("nova_horas").style.visibility = "";
     		document.getElementById("horas").style.visibility = "hidden";
-    		document.getElementById("btn_salvar").style.visibility = "";
+    		
+    		
     	}
     	function hide(){
     	document.getElementById("senha_anterior").style.visibility = "hidden";
@@ -22,6 +24,7 @@
 		document.getElementById("nova_horas").style.visibility = "hidden";
 		document.getElementById("horas").style.visibility = "";
 		document.getElementById("btn_salvar").style.visibility = "hidden";
+		
 	}
     	
     </script>
@@ -29,21 +32,23 @@
    Email: @usuario.email<br>
    Nome: @usuario.name<br>
    Tipo: @usuario.tipo<br>
-   <div id="horas">Horas: @usuario.quantidadehoras</div>
-   <div id="nova_horas" style="visibility: hidden">Digite a nova quantidade:
+   @if(session.contains("connected") && session.contains("aluno")) {
+   <div id="horas">Horas: @usuario.quantidadehoras</div>}else{}
+   <div id="nova_horas" style="visibility: hidden">Digite a nova quantidade de horas*:
    <br><input type="text" name="quantidadehoras"></div>
    
-   <div id="senha_anterior" style="visibility: hidden">Digite a senha Atual:
+   <div id="senha_anterior" style="visibility: hidden">Digite a senha Atual*:
    <br><input type="password" name="new_password"></div>
-   <div id="nova_senha" style="visibility: hidden">Digite a nova Senha:
+   <div id="nova_senha" style="visibility: hidden">Digite a nova Senha*:
    <br><input type="password" name="password"></div><br>
-   
+   Ao clicar em Editar os campos com * são obrigatorios.<br>
+   Caso o campo horas não tenha mudado basta colocar a quantidade atual.
     	<fildset>
      		<legend></legend>
     	</fildset>
     	<input type="submit" id="btn_salvar" style="visibility: hidden" class="btn btn-success" value="Salvar">
     	<input type="button" class="btn" value="Editar" onclick="show()">
-						 	<input type="button" class="btn" value="Cancelar" onclick="hide()"> 
+		<input type="button" id="btn_cancelar" class="btn" value="Cancelar" onclick="hide()"> 
 		<input type="hidden" name="email" value="@usuario.email">
 		<input type="hidden" name="name" value="@usuario.name">
 		<input type="hidden" name="tipo" value="@usuario.tipo">

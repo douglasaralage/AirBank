@@ -19,21 +19,22 @@ GET		/sobre						controllers.Application.sobre()
 GET		/localizacao				controllers.Application.localizacao()
 
 #pagina de visualização de Eventos
-GET		/event						controllers.Application.jogo()
+GET		/event						controllers.Admin.jogo()
 
 #Adicionando Eventos
-GET		/addeventos					controllers.Application.adicionarEvento()
-POST	/eventosadd					controllers.Application.addEvento()
-GET		/evento						controllers.Application.principalEvento(id: Long)
-GET		/imgevento					controllers.Application.getImageEvento(nome: Long)
+GET		/addeventos					controllers.Admin.adicionarEvento()
+POST	/eventosadd					controllers.Admin.addEvento()
+GET		/evento						controllers.Admin.principalEvento(id: Long)
+GET		/imgevento					controllers.Admin.getImageEvento(nome: Long)
+
 #Adicionando Noticias
-GET		/addnoticias				controllers.Application.adicionarNoticias()
-POST	/noticiasadd				controllers.Application.addNoticia()
+GET		/addnoticias				controllers.Admin.adicionarNoticias()
+POST	/noticiasadd				controllers.Admin.addNoticia()
 GET		/noticia					controllers.Application.principalNoticia(id: Long)
-GET		/img						controllers.Application.getImageNoticia(nome: Long)
+GET		/img						controllers.Application.getImageNoticia(name: Long)
 
 #info
-GET		/info						controllers.Application.info()
+GET		/info						controllers.Admin.info()
 POST	/upinfo						controllers.Application.upinfo(id: Long)
 # Authentication
 GET     /login                 controllers.Application.login()

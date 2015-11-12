@@ -5,12 +5,12 @@
     
   
                               
-                              <form action="@routes.Application.addEvento()" method="POST">
+                              
                          	 <fildset>
                              <legend> Cadastrar Evento </legend>
                              </fildset>   
                                     
-                                                                                     
+                                  @form(routes.Admin.addEvento(), 'enctype -> "multipart/form-data") {                                                   
                            			@inputText(formEvent("nomeEvento"),'_label -> "Nome do Evento:")
 						 			@inputText(formEvent("sobreEvento"),'_label -> "Sobre o Evento:")
 						 			@inputText(formEvent("localEvento"),'_label -> "Endereco do Evento:")
@@ -22,9 +22,9 @@
                              		</fildset>	
                             <input type="submit" class="btn btn-success" value="Cadastrar">
 						 	<input type="reset" class="btn" value="Limpar">
-						 </form>
+						
                             
                       
 			 
-    
+    }
 }

@@ -7,7 +7,7 @@
                              <legend> Eventos Recentes </legend>
                              </fildset> 
                              @for(Event <- nome){
-                             <a href="@routes.Application.principalEvento(Event.id)">@Event.nomeEvento</a><br>
+                             <a href="@routes.Admin.principalEvento(Event.id)">@Event.nomeEvento</a><br>
                          		}
                        <!-- Parte para link de cadastro de Eventos -->
      						 <fildset>
@@ -15,6 +15,6 @@
                              </fildset>
                              
                              @if(session.contains("connected") && session.contains("professor")) {
-                             <a href="@routes.Application.adicionarEvento()">Cadastrar Evento</a>
+                             <a href="@routes.Admin.adicionarEvento()">Cadastrar Evento</a>
 			}else{}
 }

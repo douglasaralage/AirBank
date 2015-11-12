@@ -8,13 +8,14 @@
                              <legend> Cadastrar Noticias </legend>
                              </fildset> 
                              
-                              <form action="@routes.Application.addNoticia()" method="POST">
+                              <form action="@routes.Admin.addNoticia()" method="POST">
                          	 
                                                    
                            			@inputText(noticiasForm("nomeNoticias"),'_label -> "Nome do Noticia:")
 						 			@inputText(noticiasForm("sobreNoticias"),'_label -> "Sobre o Noticia:")
 						 			@inputText(noticiasForm("dataNoticias"),'_label -> "Data do Noticia:")
-						 			Foto: <input type ="file" name ="picture"></input>
+						 			<!--  Foto: <input type ="file" name ="picture1"></input>
+						 			========================================= -->
 						 			<fildset>
                              			<legend></legend>
                              		</fildset>

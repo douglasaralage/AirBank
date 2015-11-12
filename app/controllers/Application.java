@@ -1,27 +1,21 @@
 package controllers;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
-
-//import com.ning.http.client.FilePart;
-//import akka.io.Tcp.Event;
-
 //models do programa
 import models.User;
 import models.Event;
 import models.Noticias;
 import play.*;
-
 import play.data.Form;
 import play.mvc.*;
-
 import views.html.*;
-import play.mvc.Http.MultipartFormData;
-import play.mvc.Http.MultipartFormData.FilePart;
+
 
 public class Application extends Controller {
 
@@ -29,18 +23,13 @@ public class Application extends Controller {
 	static Form<Login> formLogin = Form.form(Login.class);
 //formulario para cadastrar
 	static Form<User> formUser = Form.form(User.class);
-//formulario para cadastrar evento
-	static Form<Event> formEvent = Form.form(Event.class);
-//formulario para cadastro de noticias
-	static Form<Noticias> formNoticias = Form.form(Noticias.class);
-//formulario para atualização do usuario
-	static Form<User> formup = Form.form(User.class);
+
 	
 //adicionando usuario
 	public static Result addUser() {
 		Form<User> formulario = formUser.bindFromRequest();
 		if (formulario.hasErrors()){
-			flash("Erro","Preencha todos os campos corretamentes");
+			flash("Error","Preencha todos os campos corretamentes");
 			return ok(cadastro.render(formUser));
 		}else{
 		User user = formulario.get();
@@ -50,6 +39,7 @@ public class Application extends Controller {
 		flash("success","Usuario Cadastrado com sucesso!");
 		return login();}
 	}
+	
 	/*
 	 * ACTIONS DO CONTROLLERS
 	 */
@@ -74,32 +64,12 @@ public class Application extends Controller {
 	public static Result index() {
 		return ok(index.render("Home Air"));
 	}
-/*Pagina de Cadastro de Evento Form*/	
-	public static Result jogo(){
-		List<Event> nome2 = Event.findAll();
-		return ok(jogo.render("jogo", nome2));
-	}
-	public static Result info(){
-		User usuario = User.findByEmail(session("connected"));
-		return ok(info.render("Info", usuario));
-	}
+
 	public static Result principalNoticia(Long id) {
 		Noticias noticia = Noticias.findById(id);
 		return ok (principalNoticia.render(noticia));
 	}
-	public static Result principalEvento(Long id) {
-		Event evento = Event.findById(id);
-		return ok (principalEvento.render(evento));
-	}
-	public static Result upinfo(Long id){
-		Form<User> formalterar = formUser.bindFromRequest();
-		Logger.info(formalterar.toString());
-		User user = formalterar.get();
-		user.password=BCrypt.hashpw(user.password, BCrypt.gensalt());
-		user.update(id);
-		flash("Certo","Dados Alterado com sucesso");
-		return ok(info.render("Info", user));
-		}
+	
 	/*
 	 * METODOS E CLASSES PARA LOGIN
 	 */
@@ -168,57 +138,23 @@ public class Application extends Controller {
 		flash("success", "Sessão finalizada com sucesso.");
 		return redirect(routes.Application.index());
 	}
-	public static Result adicionarNoticias() {
-		return ok(adicionarNoticias.render(formNoticias));
-	}
-	public static Result addNoticia() throws IOException, FileNotFoundException {
-		Form<Noticias> novoform = formNoticias.bindFromRequest();
-		Logger.info(novoform.errors().toString());
-		if(novoform.hasErrors()){
-			flash("Erro","Preencha todos os campos corretamentes");
-			return ok(adicionarNoticias.render(formNoticias));
-		}else{
-		Noticias novaNoticias = novoform.get();
-		Logger.info(novoform.toString());
-		if(novaNoticias.imgNoticias != null) {
-		MultipartFormData body = request().body().asMultipartFormData();
-		FilePart picture = body.getFile("picture");
-		novaNoticias.imgNoticias = IOUtils.toByteArray(new FileInputStream(picture.getFile()));
+	
+	public static Result upinfo(Long id){
+		Form<User> formalterar = formUser.bindFromRequest();
+		Logger.info(formalterar.toString());
+		User user = formalterar.get();
+		user.password=BCrypt.hashpw(user.password, BCrypt.gensalt());
+		user.update(id);
+		flash("success","Dados Alterado com sucesso");
+		return ok(info.render("Info", user));
 		}
-		novaNoticias.save();
-		flash("Success","Noticia cadastrada com sucesso.");
-		return ok(adicionarNoticias.render(formNoticias));}
-	}
+	
+	
 //get imagem
 	public static Result getImageNoticia(Long idNoticias){
-		Noticias noticia = Noticias.findById(idNoticias);
+		Noticias noticia = Noticias.find.byId(idNoticias);
 		response().setContentType("image/jpeg");
 		return ok(noticia.imgNoticias);
 	}
-	public static Result getImageEvento(Long idEvent){
-		Event evento = Event.findById(idEvent);
-		response().setContentType("image/jpeg");
-		return ok(evento.imgEvent);
-	}
-//addeventos
-	public static Result adicionarEvento() {
-		return ok(adicionarEvento.render(formEvent));
-	}
-	public static Result addEvento() throws IOException, FileNotFoundException {
-		Form<Event> novoform = formEvent.bindFromRequest();
-		Logger.info(novoform.errors().toString());
-		if(novoform.hasErrors()){
-			flash("Errorr","Preencha todos os campos corretamentes");
-			return ok(adicionarEvento.render(formEvent));
-		}else{
-		Event novoEvent = novoform.get();
-		if(novoEvent.imgEvent != null) {
-		MultipartFormData body = request().body().asMultipartFormData();
-		FilePart picture = body.getFile("picture");
-		novoEvent.imgEvent = IOUtils.toByteArray(new FileInputStream(picture.getFile()));
-		}
-		novoEvent.save();
-		flash("Succes","Evento cadastrada com sucesso.");
-		return ok(adicionarEvento.render(formEvent));}
-	}
+	
 }
